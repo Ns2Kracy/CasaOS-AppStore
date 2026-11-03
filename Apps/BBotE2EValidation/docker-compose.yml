@@ -36,3 +36,5 @@ x-casaos:
   scheme: http
   port_map: "18080"
   index: /
+
+# Exercise the native workflow_run path after a PR repair commit.
