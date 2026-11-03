@@ -38,3 +38,5 @@ x-casaos:
   index: /
 
 # Exercise the native workflow_run path after a PR repair commit.
+
+# Validate the initialized VM-account baseline with the final workflow.
