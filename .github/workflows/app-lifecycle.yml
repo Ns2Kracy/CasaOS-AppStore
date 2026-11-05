@@ -24,7 +24,7 @@ jobs:
     env:
       APP_KEY: ${{ inputs.app-key }}
       E2E_CLI: ${{ vars.E2E_CLI || '/opt/zimaos-e2e/current/e2e' }}
-      E2E_PLUGIN: ${{ vars.E2E_LIFECYCLE_PLUGIN || '/opt/bbot/bbot-cli-install-1.2.0.wasm' }}
+      E2E_PLUGIN: ${{ vars.E2E_LIFECYCLE_PLUGIN || '/opt/bbot/bbot-cli-install-1.3.0.wasm' }}
       E2E_ENV_FILE: ${{ vars.E2E_ENV_FILE || '/dev/null' }}
       E2E_NODES: ${{ vars.E2E_NODES || '/var/lib/zimaos-e2e/nodes.json' }}
       CASE_ID: CLI-LIFECYCLE-01
@@ -69,7 +69,7 @@ jobs:
           export E2E_APP_COMPOSE_BASE64
           E2E_APP_COMPOSE_BASE64=$(base64 -w0 "$BBOT_RUN_ROOT/input/$APP_KEY/compose.yaml")
           "$E2E_CLI" plugin add "$E2E_PLUGIN"
-          "$E2E_CLI" run -suite bbot-cli-install@1.2.0 -id "$CASE_ID" \
+          "$E2E_CLI" run -suite bbot-cli-install@1.3.0 -id "$CASE_ID" \
             -gate -lanes 1 -select node=pve -os-version 1.8.0-beta2 \
             -env "$E2E_ENV_FILE"
           jq -se --arg id "$CASE_ID" '
