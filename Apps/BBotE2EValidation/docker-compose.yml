@@ -1,0 +1,42 @@
+name: bbot-e2e-validation
+services:
+  web:
+    image: nginx:alpine
+    container_name: bbot-e2e-validation
+    restart: unless-stopped
+    ports:
+      - target: 80
+        published: "18080"
+        protocol: tcp
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
+    x-casaos:
+      ports:
+        - container: "80"
+          description:
+            en_US: HTTP service
+x-casaos:
+  id: org.ns2kracy.bbote2evalidation
+  architectures: [amd64, arm64]
+  main: web
+  author: Ns2Kracy
+  category: Networking
+  developer: Nginx
+  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/NginxProxyManager/icon.svg
+  title:
+    en_US: BBot E2E Validation
+  tagline:
+    en_US: Temporary isolated PR to VM validation
+  description:
+    en_US: Disposable Nginx app for validating BBot webhook delivery and isolated App Center API and browser installation. Do not merge.
+  scheme: http
+  port_map: "18080"
+  index: /
+
+# Exercise the native workflow_run path after a PR repair commit.
+
+# Validate the initialized VM-account baseline with the final workflow.
